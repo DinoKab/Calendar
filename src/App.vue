@@ -11,12 +11,11 @@ export default {
   components: {
     Header
   }
-}
+};
 </script>
-
 
 <style>
 body {
-  background-color: #EEEEEE
+  background-color: #ECEFF1;
 }
 </style>
