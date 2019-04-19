@@ -109,6 +109,18 @@ export default {
         );
       return events;
     }
+  },
+  methods: {
+    saveFile: function() {
+      this.arr.push({
+        date: this.date,
+        title: this.title,
+        participants: this.participants,
+        details: this.details
+      });
+      const data = JSON.stringify(this.arr);
+      window.localStorage.setItem("arr", data);
+    }
   }
 };
 </script>

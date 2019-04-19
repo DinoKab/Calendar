@@ -9,22 +9,30 @@ export default new Vuex.Store({
       {
         title: "Начало проекта",
         details: "",
-        date: "2019-04-15",
-        open: false
+        date: "2019-04-15"
       },
       {
         title: "День Интернета",
         details: "",
-        date: "2019-04-04",
-        open: false
+        date: "2019-04-04"
+      },
+      {
+        title: "День труда",
+        details: "",
+        date: "2019-05-01"
+      },
+      {
+        title: "День программиста",
+        details: "",
+        date: "2019-09-13"
       },
     ]
   },
-  mutations: {
-
-  },
-  actions: {
-
+  watch: {
+    input: function() {
+      if (isLocalStorage(), data ){
+      this.events.push(JSON.parse(localStorage.getItem('arr')))
+      }}
   },
   getters: {
     getEvents: (state) => state.events,
