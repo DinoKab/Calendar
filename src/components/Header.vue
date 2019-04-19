@@ -1,21 +1,4 @@
 <template>
-  <!-- <div>    
-    <v-toolbar class="grey lighten-2">
-      <v-layout row align-center>
-        <v-flex xs12 offset-md3>
-          <v-btn flat dark class="cyan darken-3">Добавить</v-btn>
-          <v-btn flat dark class="cyan darken-3">Обновить</v-btn>
-        </v-flex>
-      </v-layout>
-      <v-spacer></v-spacer>
-      <v-layout justify-center align-center>
-        <v-flex xs6 md6>
-          <v-text-field label="Поиск" v-model="searchTerm" color="#0097a7"></v-text-field>
-        </v-flex>
-      </v-layout>
-    </v-toolbar>
-  </div>-->
-
   <div class="blue-grey lighten-5" style="box-shadow: 0 0 6px rgba(0,0,0,0.5);">
     <v-layout row wrap justify-center class="pt-3">
       <v-flex xs12 md6 text-xs-center text-md-left>
@@ -41,12 +24,7 @@
         <v-menu max-width="98%" min-width="240" nudge-bottom="60">
           <template v-slot:activator="{ on }">
             <v-toolbar-title v-on="on">
-              <v-text-field
-                label="Поиск"
-                @click="searchWindow = true"
-                v-model="searchTerm"
-                color="#0097a7"
-              ></v-text-field>
+              <v-text-field label="Поиск" v-model="searchTerm" color="#0097a7"></v-text-field>
             </v-toolbar-title>
           </template>
 
@@ -68,13 +46,11 @@
               </template>
               <v-date-picker v-model="date" locale="ru-Latn" color="#0097a7" no-title scrollable>
                 <v-spacer></v-spacer>
-                <!-- <v-btn flat color="primary" @click="dateEvent = false">Отмена</v-btn>
-                <v-btn flat color="primary" @click="dateEvent  = false">OK</v-btn>-->
               </v-date-picker>
             </v-menu>
           </v-flex>
           <v-flex xs12>
-            <v-text-field v-model="event" color="#0097a7" label="Событие" type="text" required></v-text-field>
+            <v-text-field v-model="title" color="#0097a7" label="Событие" type="text" required></v-text-field>
           </v-flex>
           <v-flex xs12>
             <v-text-field
@@ -99,14 +75,10 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="#0097a7" flat="flat" @click="addWindow = false">Отмена</v-btn>
-          <v-btn color="#0097a7" flat="flat" @click="addWindow = false">Добавить</v-btn>
+          <v-btn color="#0097a7" flat="flat" @click="saveFile(); addWindow = false">Добавить</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-
-    <!-- <v-flex v-for="event in searchEvents" :key="event.id" xs12 sm8>
-      <div>{{ event.title }}</div>
-    </v-flex>-->
   </div>
 </template>
 
@@ -116,9 +88,10 @@ export default {
     date: new Date().toISOString().slice(0, 10),
     dateEvent: new Date(),
     menu: false,
-    event: "",
+    title: "",
     participants: "",
     details: "",
+    arr: [],
     addWindow: false,
     searchTerm: null
   }),
